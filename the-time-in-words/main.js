@@ -47,10 +47,19 @@ function main() {
     if(m == 0){
         process.stdout.write(numbers[h]+" o' clock");
     }
-    else if(m <= 30){ // Using "Past"
-        process.stdout.write(constructWord(m)+' minutes past'+numbers[h]);
+    else if(m <= 30){
+        var unit = 'minutes';
+        if(m == 1){
+            unit = 'minute';
+        }
+        process.stdout.write(constructWord(m)+' '+unit+' past '+numbers[h]);
     }
     else if(m > 30) {
+        var unit = 'minutes';
+        if(60-m == 1){
+            unit = 'minute';
+        }
+        
         process.stdout.write(constructWord(60-m)+' minutes to '+numbers[h+1]);
     }
 }
