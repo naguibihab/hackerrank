@@ -44,29 +44,39 @@ function main() {
     var h = parseInt(readLine());
     var m = parseInt(readLine());
     
-    var hourWord = numbers[h];
-    var minutesWord = '';
-    
-    if (typeof numbers[m] === 'undefined') { // If m doesn't exist in numbers array
-        if(m < 20) { // ends with teen
-            minuteWord = numbers[m-10]+'teen';
+    if(m == 0){
+        process.stdout.write(numbers[h]+" o' clock");
+    }
+    else if(m <= 30){ // Using "Past"
+        process.stdout.write(constructWord(m)+' minutes past'+numbers[h]);
+    }
+    else if(m > 30) {
+        process.stdout.write(constructWord(60-m)+' minutes to '+numbers[h+1]);
+    }
+}
+
+function constructWord(n){
+    var resultWord = '';
+    if (typeof numbers[n] === 'undefined') { // If m doesn't exist in numbers array
+        if(n < 20) { // ends with teen
+            minuteWord = numbers[n-10]+'teen';
         } else {
-            var firstDigit = parseInt(m/10,10);
-            var secondDigit = m%10;
-            
+            var firstDigit = parseInt(n/10,10);
+            var secondDigit = n%10;
+
             // Getting the word of the first digit (i.e. fourty)
             if(typeof numbers[firstDigit*10] === 'undefined') {
-                minutesWord += numbers[firstDigit]+'ty'+' ';
+                resultWord += numbers[firstDigit]+'ty'+' ';
             } else {
-                minutesWord += numbers[firstDigit*10] + ' ';
+                resultWord += numbers[firstDigit*10] + ' ';
             }
-            
+
             // Getting the word of the second digit (i.e. two)
-            minutesWord += numbers[secondDigit];
+            resultWord += numbers[secondDigit];
         }
     } else {
-        minutesWord = numbers[m];
+        resultWord = numbers[n];
     }
     
-    console.log(hourWord,minutesWord);
+    return resultWord;
 }
