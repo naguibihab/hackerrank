@@ -68,7 +68,7 @@ function constructWord(n){
         resultWord = 'half';
     } else if (typeof numbers[n] === 'undefined') { // If m doesn't exist in numbers array
         if(n < 20) { // ends with teen
-            minuteWord = numbers[n-10]+'teen';
+            resultWord = numbers[n-10]+'teen';
         } else {
             var firstDigit = parseInt(n/10,10);
             var secondDigit = n%10;
@@ -87,7 +87,7 @@ function constructWord(n){
         resultWord += ' minutes';
     } else {
         var unit = 'minutes';
-        if(m == 1){
+        if(n == 1){
             unit = 'minute';
         }
         resultWord = numbers[n]+' '+unit;
