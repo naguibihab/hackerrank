@@ -48,11 +48,7 @@ function main() {
         process.stdout.write(numbers[h]+" o' clock");
     }
     else if(m <= 30){
-        var unit = 'minutes';
-        if(m == 1){
-            unit = 'minute';
-        }
-        process.stdout.write(constructWord(m)+' '+unit+' past '+numbers[h]);
+        process.stdout.write(constructWord(m)+' past '+numbers[h]);
     }
     else if(m > 30) {
         var unit = 'minutes';
@@ -60,17 +56,17 @@ function main() {
             unit = 'minute';
         }
         
-        if(h == 12){
-            h = 0;
-        }
-        
-        process.stdout.write(constructWord(60-m)+' '+unit+' to '+numbers[h+1]);
+        process.stdout.write(constructWord(60-m)+' to '+numbers[h+1]);
     }
 }
 
 function constructWord(n){
     var resultWord = '';
-    if (typeof numbers[n] === 'undefined') { // If m doesn't exist in numbers array
+    if(n == 15){
+       resultWord = 'quarter';
+    } else if (n == 30) {
+        resultWord = 'half';
+    } else if (typeof numbers[n] === 'undefined') { // If m doesn't exist in numbers array
         if(n < 20) { // ends with teen
             minuteWord = numbers[n-10]+'teen';
         } else {
@@ -87,8 +83,14 @@ function constructWord(n){
             // Getting the word of the second digit (i.e. two)
             resultWord += numbers[secondDigit];
         }
+        
+        resultWord += ' minutes';
     } else {
-        resultWord = numbers[n];
+        var unit = 'minutes';
+        if(m == 1){
+            unit = 'minute';
+        }
+        resultWord = numbers[n]+' '+unit;
     }
     
     return resultWord;
