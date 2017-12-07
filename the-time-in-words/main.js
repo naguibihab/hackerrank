@@ -60,7 +60,11 @@ function main() {
             unit = 'minute';
         }
         
-        process.stdout.write(constructWord(60-m)+' minutes to '+numbers[h+1]);
+        if(h == 12){
+            h = 0;
+        }
+        
+        process.stdout.write(constructWord(60-m)+' '+unit+' to '+numbers[h+1]);
     }
 }
 
