@@ -42,38 +42,20 @@ function calcDistanceToQueen(xpoint,queen){
 
 }
 
-// There's an easier way to get the heading by splitting it into two headings
-function getHeading(xpoint,queen){
-    // North
-    if(xpoint.r > queen.r && xpoint.c == queen.c){
-        return 'N';
+function getHeading(xpoint,queen) {
+    var heading = '';
+    
+    // Get row heading
+    if(xpoint.r > queen.r){
+        heaing += 'N';
+    } else if(xpoint.r < queen.r) {
+        heading += 'S';
     }
-    // North East
-    else if(xpoint.r > queen.r && xpoint.c > queen.c){
-        return 'NE';
-    }
-    // East
-    else if(xpoint.r == queen.r && xpoint.c > queen.c){
-        return 'E';
-    }
-    // South East
-    else if(xpoint.r < queen.r && xpoint.c < queen.c){
-        return 'SE';
-    }
-    // South
-    else if(xpoint.r < queen.r && xpoint.c == queen.c){
-        return 'S';
-    }
-    // South West
-    else if(xpoint.r < queen.r && xpoint.c < queen.c){
-        return 'SW';
-    }
-    // West
-    else if(xpoint.r == queen.r && xpoint.c < queen.c){
-        return 'W';
-    }
-    // North West
-    else if(xpoint.r > queen.r && xpoint.c < queen.c) {
-        return 'NW';
+
+    // Get col heading
+    if(xpoint.c > queen.c){
+        heading += 'E';
+    } else if(xpoint.c > queen.c){
+        heading += 'W';
     }
 }
