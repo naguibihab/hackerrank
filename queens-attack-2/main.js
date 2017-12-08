@@ -39,7 +39,9 @@ function main() {
 }
 
 function calcDistanceToQueen(xpoint,queen){
+    var heading = getHeading(xpoint,queen);
 
+    
 }
 
 function getHeading(xpoint,queen) {
@@ -58,4 +60,6 @@ function getHeading(xpoint,queen) {
     } else if(xpoint.c > queen.c){
         heading += 'W';
     }
+
+    return heading;
 }
