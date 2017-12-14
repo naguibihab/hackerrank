@@ -44,22 +44,58 @@ function calcDistanceToQueen(xpoint,queen){
     
 }
 
-function getHeading(xpoint,queen) {
-    var heading = '';
-    
-    // Get row heading
-    if(xpoint.r > queen.r){
-        heaing += 'N';
-    } else if(xpoint.r < queen.r) {
-        heading += 'S';
+function getHeading(xpoint,queen){
+    // North
+    if(xpoint.r > queen.r && xpoint.c == queen.c){
+        return 'N';
     }
-
-    // Get col heading
-    if(xpoint.c > queen.c){
-        heading += 'E';
-    } else if(xpoint.c > queen.c){
-        heading += 'W';
+    // North East
+    else if(xpoint.r > queen.r && xpoint.c > queen.c){
+        return 'NE';
     }
-
-    return heading;
+    // East
+    else if(xpoint.r == queen.r && xpoint.c > queen.c){
+        return 'E';
+    }
+    // South East
+    else if(xpoint.r < queen.r && xpoint.c < queen.c){
+        return 'SE';
+    }
+    // South
+    else if(xpoint.r < queen.r && xpoint.c == queen.c){
+        return 'S';
+    }
+    // South West
+    else if(xpoint.r < queen.r && xpoint.c < queen.c){
+        return 'SW';
+    }
+    // West
+    else if(xpoint.r == queen.r && xpoint.c < queen.c){
+        return 'W';
+    }
+    // North West
+    else if(xpoint.r > queen.r && xpoint.c < queen.c) {
+        return 'NW';
+    }
 }
+
+
+// function getHeading(xpoint,queen) {
+//     var heading = '';
+    
+//     // Get row heading
+//     if(xpoint.r > queen.r){
+//         heaing += 'N';
+//     } else if(xpoint.r < queen.r) {
+//         heading += 'S';
+//     }
+
+//     // Get col heading
+//     if(xpoint.c > queen.c){
+//         heading += 'E';
+//     } else if(xpoint.c > queen.c){
+//         heading += 'W';
+//     }
+
+//     return heading;
+// }
