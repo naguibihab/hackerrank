@@ -177,24 +177,3 @@ function getHeading(queen,xpoint){
         return -1;
     }
 }
-
-
-// function getHeading(xpoint,queen) {
-//     var heading = '';
-    
-//     // Get row heading
-//     if(xpoint.r > queen.r){
-//         heaing += 'N';
-//     } else if(xpoint.r < queen.r) {
-//         heading += 'S';
-//     }
-
-//     // Get col heading
-//     if(xpoint.c > queen.c){
-//         heading += 'E';
-//     } else if(xpoint.c > queen.c){
-//         heading += 'W';
-//     }
-
-//     return heading;
-// }
