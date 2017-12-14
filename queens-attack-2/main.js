@@ -52,17 +52,18 @@ function main() {
     
 }
 
-function calcDistanceToQueen(xpoint,queen,heading){
+function calcDistanceToQueen(queen,xpoint,heading){
+    console.log(xpoint);
     process.stdout.write(heading+'\n');
 }
 
-function getHeading(xpoint,queen){
+function getHeading(queen,xpoint){
     // North
     if(xpoint.r > queen.r && xpoint.c == queen.c){
         return 'N';
     }
     // North East
-    else if(xpoint.r > queen.r && xpoint.c > queen.c){
+    else if(xpoint.r > queen.r && xpoint.c > queen.c && xpoint.r - queen.r == xpoint.c - queen.c){
         return 'NE';
     }
     // East
@@ -70,7 +71,7 @@ function getHeading(xpoint,queen){
         return 'E';
     }
     // South East
-    else if(xpoint.r < queen.r && xpoint.c < queen.c){
+    else if(xpoint.r < queen.r && xpoint.c > queen.c && queen.r - xpoint.r == xpoint.c - queen.c){
         return 'SE';
     }
     // South
@@ -78,7 +79,7 @@ function getHeading(xpoint,queen){
         return 'S';
     }
     // South West
-    else if(xpoint.r < queen.r && xpoint.c < queen.c){
+    else if(xpoint.r < queen.r && xpoint.c < queen.c && queen.r - xpoint.r == queen.c - xpoint.c){
         return 'SW';
     }
     // West
@@ -86,7 +87,7 @@ function getHeading(xpoint,queen){
         return 'W';
     }
     // North West
-    else if(xpoint.r > queen.r && xpoint.c < queen.c) {
+    else if(xpoint.r > queen.r && xpoint.c < queen.c && xpoint.r - queen.r == queen.c - xpoint.c) {
         return 'NW';
     }
     // Not in Queen's path
