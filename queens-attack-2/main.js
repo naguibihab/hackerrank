@@ -27,31 +27,33 @@ function main() {
     var rQueen_temp = readLine().split(' ');
     var rQueen = parseInt(rQueen_temp[0]);
     var cQueen = parseInt(rQueen_temp[1]);
+    var queen = {
+                r: rQueen,
+                c: cQueen
+            };
+    var obstaclesDistance = [];
     for(var a0 = 0; a0 < k; a0++){
         var rObstacle_temp = readLine().split(' ');
         var rObstacle = parseInt(rObstacle_temp[0]);
         var cObstacle = parseInt(rObstacle_temp[1]);
         // your code goes here
-        calcDistanceToQueen(
-            {
-                r: rQueen,
-                c: cQueen
-            },
+        var obstacle = 
             {
                 r: rObstacle,
                 c: cObstacle
-            }
-        );       
+            };
+        var obstacleHeading = getHeading(queen,obstacle);
+        if(obstacleHeading != -1){
+            var obstacleDistance = calcDistanceToQueen(queen,obstacle,obstacleHeading);
+            //obstacles[obstacleHeading] = obstacleDistance;
+        }
     }
     
     
 }
 
-function calcDistanceToQueen(xpoint,queen){
-    var heading = getHeading(xpoint,queen);
-    if(heading != -1){
-        process.stdout.write(heading);
-    }
+function calcDistanceToQueen(xpoint,queen,heading){
+    process.stdout.write(heading+'\n');
 }
 
 function getHeading(xpoint,queen){
