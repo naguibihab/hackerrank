@@ -101,25 +101,41 @@ function main() {
 
 function calcDistanceToQueen(queen,xpoint,heading){
     var distance = 0;
+    var nsDistance = -1;
+    var ewDistance = -1;
     switch(heading[0]){
         case 'N':
-            distance += xpoint.r - queen.r;
+            nsDistance = xpoint.r - queen.r;
             break;
         case 'S':
-            distance += queen.r - xpoint.r;
+            nsDistance = queen.r - xpoint.r;
+            break;
+        case 'E':
+            ewDistance = xpoint.c - queen.c;
+            break;
+        case 'W':
+            ewDistance = queen.c - xpoint.c;
             break;
     }
     
     switch(heading[1]){
         case 'E':
-            distance += xpoint.c - queen.c;
+            ewDistance = xpoint.c - queen.c;
             break;
         case 'W':
-            distance += queen.c - xpoint.c;
+            ewDistance = queen.c - xpoint.c;
             break;
     }
     
-    console.log('calcDistance',xpoint,heading[0],heading[1],distance);
+    if(nsDistance == -1){
+        distance = ewDistance;   
+    } else if(ewDistance == -1){
+        distance = nsDistance;
+    } else{
+        distance = Math.min(nsDistance,ewDistance);
+    }
+    
+    console.log('calcDistance',xpoint,heading,distance,nsDistance,ewDistance);
     return distance;
 }
 
