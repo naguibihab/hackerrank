@@ -24,15 +24,24 @@ function main() {
     var n_temp = readLine().split(' ');
     var n = parseInt(n_temp[0]);
     var k = parseInt(n_temp[1]);
-    var queen.rueen_temp = readLine().split(' ');
-    var queen.rueen = parseInt(queen.rueen_temp[0]);
-    var queen.cueen = parseInt(queen.rueen_temp[1]);
+    var rQueen_temp = readLine().split(' ');
+    var rQueen = parseInt(rQueen_temp[0]);
+    var cQueen = parseInt(rQueen_temp[1]);
     for(var a0 = 0; a0 < k; a0++){
         var rObstacle_temp = readLine().split(' ');
         var rObstacle = parseInt(rObstacle_temp[0]);
         var cObstacle = parseInt(rObstacle_temp[1]);
         // your code goes here
-        
+        calcDistanceToQueen(
+            {
+                r: rQueen,
+                c: cQueen
+            },
+            {
+                r: rObstacle,
+                c: cObstacle
+            }
+        );       
     }
     
     
@@ -40,8 +49,9 @@ function main() {
 
 function calcDistanceToQueen(xpoint,queen){
     var heading = getHeading(xpoint,queen);
-
-    
+    if(heading != -1){
+        process.stdout.write(heading);
+    }
 }
 
 function getHeading(xpoint,queen){
@@ -76,6 +86,10 @@ function getHeading(xpoint,queen){
     // North West
     else if(xpoint.r > queen.r && xpoint.c < queen.c) {
         return 'NW';
+    }
+    // Not in Queen's path
+    else {
+        return -1;
     }
 }
 
