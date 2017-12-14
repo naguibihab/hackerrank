@@ -46,7 +46,7 @@ function main() {
             };
         var obstacleHeading = getHeading(queen,obstacle);
         if(obstacleHeading != -1){
-            var obstacleDistance = calcDistanceToQueen(queen,obstacle,obstacleHeading);
+            var obstacleDistance = calcDistanceToQueen(queen,obstacle,obstacleHeading)-1;
             obstaclesDistance[obstacleHeading] = obstacleDistance;
             totalDistance += obstacleDistance; // This needs to change later in case two obstacles are in the same heading
         }
@@ -135,7 +135,7 @@ function calcDistanceToQueen(queen,xpoint,heading){
         distance = Math.min(nsDistance,ewDistance);
     }
     
-    console.log('calcDistance',xpoint,heading,distance,nsDistance,ewDistance);
+    console.log('calcDistance',xpoint,heading,nsDistance,ewDistance,distance);
     return distance;
 }
 
