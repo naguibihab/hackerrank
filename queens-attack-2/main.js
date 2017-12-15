@@ -47,9 +47,18 @@ function main() {
         var obstacleHeading = getHeading(queen,obstacle);
         if(obstacleHeading != -1){
             var obstacleDistance = calcDistanceToQueen(queen,obstacle,obstacleHeading)-1;
-            obstaclesDistance[obstacleHeading] = obstacleDistance;
-            totalDistance += obstacleDistance; // This needs to change later in case two obstacles are in the same heading
+            if(!(obstacleHeading in obstaclesDistance)){
+                // No obstacles in that heading
+                obstaclesDistance[obstacleHeading] = obstacleDistance;
+            } else {
+                // There is already an obstacle in that heading
+                obstaclesDistance[obstacleHeading] = Math.min(obstaclesDistance[obstacleHeading],obstacleDistance);
+            }
         }
+    }
+    // Loop over obstacles
+    for(var key in obstaclesDistance){
+        totalDistance += obstaclesDistance[key];
     }
     
     // Calc distance from queen to board where there are no obstacles
@@ -95,8 +104,7 @@ function main() {
         totalDistance+= calcDistanceToQueen(queen,boardNW,'NW');
     }
     
-    console.log(totalDistance);
-//    process.stdout.write(totalDistance);
+    process.stdout.write(totalDistance);
 }
 
 function calcDistanceToQueen(queen,xpoint,heading){
@@ -135,7 +143,7 @@ function calcDistanceToQueen(queen,xpoint,heading){
         distance = Math.min(nsDistance,ewDistance);
     }
     
-    console.log('calcDistance',xpoint,heading,nsDistance,ewDistance,distance);
+//    console.log('calcDistance',xpoint,heading,nsDistance,ewDistance,distance);
     return distance;
 }
 
