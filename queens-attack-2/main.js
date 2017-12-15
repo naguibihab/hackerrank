@@ -103,8 +103,7 @@ function main() {
     if(!('NW' in obstaclesDistance)){
         totalDistance+= calcDistanceToQueen(queen,boardNW,'NW');
     }
-    
-    process.stdout.write(totalDistance);
+    console.log(totalDistance);
 }
 
 function calcDistanceToQueen(queen,xpoint,heading){
